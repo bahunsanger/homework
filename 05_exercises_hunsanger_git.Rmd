@@ -163,12 +163,10 @@ garden_harvest %>%
   geom_area() +
   transition_reveal(date) +
   labs(title = "Cumulative Tomato Harvest", fill = "") 
+anim_save("cum_tomatoes.gif")
   
 ```
 
-```{r}
-anim_save("cum_tomatoes.gif")
-```
 
 ```{r}
 knitr::include_graphics("cum_tomatoes.gif")
@@ -211,11 +209,9 @@ bikemap_anim <- mallorca_map %>%
        subtitle = "time: {frame_along}")
 
 animate(bikemap_anim)
-```
-
-```{r}
 anim_save("bike_trip.gif")
 ```
+
 
 ```{r}
 knitr::include_graphics("bike_trip.gif")
@@ -248,13 +244,11 @@ tri_anim <- ggmap(panama_map) +
        subtitle = "Heather Lendway Ironman 70.3 Pan AM Championships",
        caption = "time: {frame_along}")
 animate(tri_anim)
+anim_save("panama_tri.gif")
 
 ```
   
-```{r}
-anim_save("panama_tri.gif")
-```
-  
+
 ```{r}
 knitr::include_graphics("panama_tri.gif")
 ```
@@ -307,7 +301,7 @@ It is nice to see new cases weekly start to fall at the very end. States tend to
   * Comment on what you see.  
 
 
-```{r, eval = FALSE}
+```{r}
 census_pop_est_2018 <- read_csv("https://www.dropbox.com/s/6txwv3b4ng7pepe/us_census_2018_state_pop_est.csv?dl=1") %>% 
   separate(state, into = c("dot","state"), extra = "merge") %>% 
   select(-dot) %>% 
@@ -327,7 +321,7 @@ cases_with_2018_pop_est <-
 states_map <- map_data("state")
 ```
 
-```{r}
+```{r, eval = FALSE}
 
 covid_anim2 <- cases_with_2018_pop_est %>% 
   ggplot() +
@@ -343,10 +337,11 @@ covid_anim2 <- cases_with_2018_pop_est %>%
        subtitle = "Date: {frame_time}")
   
   animate(covid_anim2, nframes = 200, end_pause = 50)
+  anim_save("covid_anim_states.gif")
   
 ```
+
 ```{r}
-anim_save("covid_anim_states.gif")
 knitr::include_graphics("covid_anim_states.gif")
 ```
 
